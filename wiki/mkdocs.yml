@@ -1,0 +1,9 @@
+site_name: Lyceum Developer Wiki
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Guidelines:
+    - Git and GitHub: git-and-github.md
+    - Secrets Management: secret-management.md
+docs_dir: docs
