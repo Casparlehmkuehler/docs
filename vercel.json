@@ -1,17 +1,24 @@
 {
-  "builds": [
+  "github": {
+    "autoDeployment": true
+  },
+  "buildCommand": "python3 -m pip install --user -r requirements.txt && cd wiki && python3 -m mkdocs build",
+  "outputDirectory": "wiki/site",
+  "installCommand": "echo 'Using buildCommand for install'",
+  "headers": [
     {
-      "src": "docs/mkdocs.yml",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "docs/site"
-      }
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "WWW-Authenticate",
+          "value": "Basic realm=\"Restricted\""
+        }
+      ]
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+  "functions": {
+    "pages/_middleware.js": {
+      "runtime": "edge"
     }
-  ]
+  }
 }
